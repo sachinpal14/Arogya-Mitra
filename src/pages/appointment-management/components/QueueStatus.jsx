@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from '../../../components/AppIcon';
+import DoctorDashboard from './DoctorDashboard'; // Ensure this path is correct
 
 const QueueStatus = ({ queueData }) => {
   const getStatusColor = (status) => {
@@ -21,18 +22,22 @@ const QueueStatus = ({ queueData }) => {
   };
 
   return (
-    <div className="bg-white w-full rounded-lg border border-slate-200 healthcare-shadow">
+    <div className="bg-white w-full rounded-lg border border-slate-200 healthcare-shadow flex flex-col overflow-y-auto max-h-[78vh]">
+      
+      {/* Header */}
       <div className="p-4 border-b border-slate-200">
         <h3 className="text-lg font-semibold text-text-primary flex items-center space-x-2">
           <Icon name="Users" size={20} className="text-primary" />
           <span>Live Queue Status</span>
         </h3>
-        <p className="text-sm text-text-secondary mt-1">Real-time updates on appointment queues</p>
+        <p className="text-sm text-text-secondary mt-1">
+          Real-time updates on appointment queues
+        </p>
       </div>
 
       {/* Overall Status */}
       <div className="border-t border-slate-200 pt-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 px-4">
           <div className="text-center p-4 bg-success/10 rounded-lg">
             <div className="text-xl font-bold text-success">
               {queueData?.reduce((sum, q) => sum + q?.completedToday, 0)}
@@ -48,12 +53,13 @@ const QueueStatus = ({ queueData }) => {
           </div>
         </div>
       </div>
-      <div className="quesGrid p-4 grid grid-cols-2 gap-3 overflow-y-scroll h-[350px]">
+
+      {/* Queue Cards */}
+      <div className="p-4 grid grid-cols-2 gap-3">
         {queueData?.map((queue) => (
           <div key={queue?.id} className="border border-slate-200 rounded-lg p-4">
+
             {/* Queue Header */}
-
-
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -67,11 +73,13 @@ const QueueStatus = ({ queueData }) => {
 
               <div className={`flex items-center space-x-1 ${getStatusColor(queue?.status)}`}>
                 <Icon name={getStatusIcon(queue?.status)} size={16} />
-                <span className="text-sm font-medium capitalize">{queue?.status?.replace('-', ' ')}</span>
+                <span className="text-sm font-medium capitalize">
+                  {queue?.status?.replace('-', ' ')}
+                </span>
               </div>
             </div>
 
-            {/* Queue Metrics */}
+            {/* Metrics */}
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center p-3 bg-muted rounded-lg">
                 <div className="text-2xl font-bold text-text-primary">{queue?.currentPatients}</div>
@@ -89,7 +97,7 @@ const QueueStatus = ({ queueData }) => {
               </div>
             </div>
 
-            {/* Progress Bar */}
+            {/* Progress */}
             <div className="mt-4">
               <div className="flex justify-between text-xs text-text-secondary mb-1">
                 <span>Queue Progress</span>
@@ -115,9 +123,13 @@ const QueueStatus = ({ queueData }) => {
             )}
           </div>
         ))}
-
-
       </div>
+
+      {/* DoctorDashboard by yuvi visible from here + scroll ok */}
+      <div className="p-4">
+        <DoctorDashboard />
+      </div>
+
     </div>
   );
 };
