@@ -6,9 +6,9 @@ const QuickStatsGrid = ({ userRole, stats }) => {
     const roleStats = {
       patient: [
         { label: 'Upcoming Appointments', value: stats?.upcomingAppointments || '3', icon: 'Calendar', color: 'text-brand-primary', bgColor: 'bg-blue-50' },
-        { label: 'Pending Results', value: stats?.pendingResults || '2', icon: 'FileText', color: 'text-secondary', bgColor: 'bg-teal-50' },
-        { label: 'Prescriptions Due', value: stats?.prescriptionsDue || '1', icon: 'Pill', color: 'text-warning', bgColor: 'bg-amber-50' },
-        { label: 'Health Score', value: stats?.healthScore || '85%', icon: 'Activity', color: 'text-success', bgColor: 'bg-emerald-50' }
+        // { label: 'Pending Results', value: stats?.pendingResults || '2', icon: 'FileText', color: 'text-secondary', bgColor: 'bg-teal-50' },
+        // { label: 'Prescriptions Due', value: stats?.prescriptionsDue || '1', icon: 'Pill', color: 'text-warning', bgColor: 'bg-amber-50' },
+        // { label: 'Health Score', value: stats?.healthScore || '85%', icon: 'Activity', color: 'text-success', bgColor: 'bg-emerald-50' }
       ],
       doctor: [
         { label: 'Today\'s Patients', value: stats?.todaysPatients || '12', icon: 'Users', color: 'text-brand-primary', bgColor: 'bg-blue-50' },
@@ -34,9 +34,9 @@ const QuickStatsGrid = ({ userRole, stats }) => {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="">
       {getStatsForRole()?.map((stat, index) => (
-        <div key={index} className="bg-white p-6 rounded-xl border border-slate-200 healthcare-shadow hover:healthcare-shadow-lg healthcare-transition">
+        <div key={index} className=" p-6 bg-white lg:w-[100%] rounded-xl border border-slate-200 healthcare-shadow hover:healthcare-shadow-lg healthcare-transition">
           <div className="flex items-center justify-between mb-4">
             <div className={`w-12 h-12 ${stat?.bgColor} rounded-lg flex items-center justify-center`}>
               <Icon name={stat?.icon} size={24} className={stat?.color} strokeWidth={2} />

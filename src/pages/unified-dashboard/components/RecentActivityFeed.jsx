@@ -34,7 +34,7 @@ const RecentActivityFeed = ({ userRole, activities }) => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl border border-slate-200 healthcare-shadow">
+    <div className="bg-white w-[100%] p-6 rounded-xl border border-slate-200 healthcare-shadow">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-lg font-semibold text-text-primary">Recent Activity</h2>
         <div className="flex items-center space-x-2">
