@@ -13,11 +13,11 @@ const UnifiedDashboard = () => {
   const loggedUser = useSelector(state => state.user.loggedUser);
   const userRole = loggedUser?.role.toLowerCase(); // patient, doctor, admin
 
- 
- 
+
+
   const [currentTime, setCurrentTime] = useState('');
 
- 
+
   // Mock stats data
   const mockStats = {
     patient: {
@@ -68,7 +68,7 @@ const UnifiedDashboard = () => {
     return () => clearInterval(interval);
   }, []);
 
-  
+
 
   const handleActionClick = (action) => {
     if (action?.id === 'emergency' || action?.id === 'emergency-coord') {
@@ -116,23 +116,26 @@ const UnifiedDashboard = () => {
             currentTime={currentTime}
           />
 
-          {/* Quick Stats Grid */}
-          <QuickStatsGrid
-            userRole={userRole}
-            stats={mockStats?.[userRole]}
-          />
+          {/* Quick Stats and Actions Panel */}
+          <div className=' flex flex-col  gap-6'>
+            <QuickStatsGrid
+              userRole={userRole}
+              stats={mockStats?.[userRole]}
+            />
+
+
+            <QuickActionsPanel
+              userRole={userRole}
+              onActionClick={handleActionClick}
+            />
+          </div>
+
 
           {/* Main Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            {/* Left Column */}
-            <div className="lg:col-span-2 space-y-6  ">
-              {/* Quick Actions */}
+          <div className="w-full">
           
-              <QuickActionsPanel
-                userRole={userRole}
-                onActionClick={handleActionClick}
-              /> 
-             
+           
+
 
               {/* Recent Activity */}
               <RecentActivityFeed
@@ -145,10 +148,10 @@ const UnifiedDashboard = () => {
                 userRole={userRole}
                 systemStatus={{}}
               /> */}
-            </div>
+           
 
             {/* Right Column */}
-            <div className="space-y-6">
+            {/* <div className="space-y-6"> */}
               {/* Upcoming Schedule */}
               {/* <UpcomingSchedule
                 userRole={userRole}
@@ -160,7 +163,7 @@ const UnifiedDashboard = () => {
                 userRole={userRole}
                 notifications={[]}
               /> */}
-            </div>
+            {/* </div> */}
           </div>
 
           {/* Emergency Contact Bar */}

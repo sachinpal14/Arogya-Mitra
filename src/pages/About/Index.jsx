@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Navsection from './Navsection';
-
-const About = () => {
+ 
+const About = () => { 
   const [hoveredCard, setHoveredCard] = useState(null);
 
   const teamMembers = [
@@ -10,7 +10,7 @@ const About = () => {
       id: 1,
       name: "Sachin Pal",
       role: "Frontend Developer",
-      image: "",
+      image: "assets/images/sp.jpg",
       bio: "Creative developer 1 year experience as inter and freelancer......",
       skills: ["React", "Node.js", "Javscript"]
     },
