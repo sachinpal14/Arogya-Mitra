@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter;
+  background-color: #ffffff;
+
+}
+
+* {
+  box-sizing: border-box;
+  line-height: normal;
+  font-family: inherit;
+  margin: unset;
+}
+
+/* Hide scrollbar but allow scrolling */
+body::-webkit-scrollbar ,.doctorsShowcase::-webkit-scrollbar, .medicine-details::-webkit-scrollbar,.provider-card-parent::-webkit-scrollbar,.my-appointments::-webkit-scrollbar,.quesGrid::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+ 
