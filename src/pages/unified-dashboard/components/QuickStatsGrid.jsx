@@ -15,8 +15,8 @@ const QuickStatsGrid = ({ userRole, stats }) => {
   const handleClick = () => {
     if (userRole === 'admin') {
       isOpen ? setIsOpen(false) : setIsOpen(true);
+      console.log("Clicked on Quick Stats Grid", allUsers, userRole);
     }
-    console.log("Clicked on Quick Stats Grid", allUsers, userRole);
 
   }
 

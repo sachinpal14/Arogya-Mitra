@@ -9,8 +9,10 @@ export default function Signup() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const loading = useSelector(state => state.user.loading);
-    const backendError = useSelector(state => state.user.error);
+
+    const { loggedUser } = useSelector((state) => state.user);
+
+    const [loading, setLoading] = useState(false);
 
     const [error, setError] = useState(null);
 
@@ -35,25 +37,43 @@ export default function Signup() {
         setError(null);
 
         if (!formData.name || !formData.email || !formData.password || !formData.gender) {
+            setLoading(false);
             return setError("All fields are required!");
         }
 
         try {
-            const result = await dispatch(registerUser({
+            setLoading(true);
+            await dispatch(registerUser({
                 name: formData.name,
                 email: formData.email,
                 password: formData.password,
                 phone: formData.phone,
                 gender: formData.gender,
-                role: "Patient"           // default role for signup
+                role: "Patient",
+                created_at: new Date().toISOString()
             })).unwrap();
 
+            setLoading(false);
+            setFormData({
+                name: '',
+                email: '',
+                password: '',
+                phone: '',
+                gender: '',
+                created_at: ''
+            });
+            setError(null);
+            // Redirect to home after successful registration
             navigate("/home");
 
         } catch (err) {
-            setError(err || "Registration failed");
+            setLoading(false);
+            setError("Registration failed");
         }
+
     };
+
+    console.log(loggedUser)
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex items-center justify-center p-2">
@@ -79,7 +99,7 @@ export default function Signup() {
                             <User className="absolute left-3 top-3 text-blue-400" />
                             <input
                                 type="text"
-                                name="fullname"
+                                name="name"
                                 value={formData.name}
                                 onChange={handleInputChange}
                                 className="w-full pl-11 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500"
@@ -140,7 +160,7 @@ export default function Signup() {
                             Gender *
                         </label>
                         <div className="flex gap-6 mb-4">
-                            {["male", "female", "other"].map((g) => (
+                            {["M", "F", "O"].map((g) => (
                                 <label key={g} className="flex items-center cursor-pointer gap-2">
                                     <input
                                         type="radio"
@@ -155,9 +175,9 @@ export default function Signup() {
                         </div>
 
                         {/* ERROR */}
-                        {(error || backendError) && (
+                        {error && (
                             <p className="text-red-500 text-center font-semibold mb-2">
-                                {error || backendError}
+                                {error}
                             </p>
                         )}
 
@@ -167,7 +187,7 @@ export default function Signup() {
                             disabled={loading}
                             className="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-lg font-semibold hover:scale-105 transition-all"
                         >
-                            {loading ? "Processing..." : "Create Account"}
+                            {loading ? "Loading..." : "Create Account"}
                         </button>
 
                         {/* Login Link */}

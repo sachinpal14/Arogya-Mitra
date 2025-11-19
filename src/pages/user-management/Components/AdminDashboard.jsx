@@ -37,28 +37,43 @@ const AdminDashboard = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (editingUser) {
-            dispatch(updateUser({ userId: editingUser.userId, data: formData }));
-        } else {
-            // Use register API or createUser dispatch here for new user
+
+        let payload = { ...formData };
+
+        // Remove empty password so backend won't throw error
+        if (!payload.password) {
+            delete payload.password;
         }
+
+        // Fix createdAt naming
+        if (editingUser?.created_at) {
+            payload.created_at = editingUser.created_at;
+        }
+
+        // Remove frontend-only key
+        delete payload.createdAt;
+
+        dispatch(updateUser({ userId: editingUser.userId, data: payload }));
         handleCloseModal();
     };
 
+
     const handleEdit = (user) => {
         setEditingUser(user);
+
         setFormData({
             name: user.name,
             email: user.email,
-            password: '',
+            password: "",
             role: user.role,
-            phone: user.phone || '',
-            gender: user.gender || 'male'
+            phone: user.phone || "",
+            gender: user.gender || "M",
+            created_at: user.created_at || user.createdAt || ""
         });
-        setShowModal(true);
 
-        dispatch(fetchAllUsers())
+        setShowModal(true);
     };
+
 
     const handleDelete = (userId) => {
         if (window.confirm('Are you sure you want to delete this user?')) {
@@ -272,13 +287,20 @@ const AdminDashboard = () => {
                                     </div>
 
                                     {/* Gender */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">Gender</label>
-                                        <select name="gender" value={formData.gender} onChange={handleInputChange}
-                                            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                            {genders.map(g => <option key={g} value={g}>{g.charAt(0).toUpperCase() + g.slice(1)}</option>)}
+                                    <div className="mb-4">
+                                        <label className="block text-gray-700 font-medium mb-2">Gender</label>
+                                        <select
+                                            name="gender"
+                                            value={formData.gender}
+                                            onChange={handleInputChange}
+                                            className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                        >
+                                            <option value="M">Male</option>
+                                            <option value="F">Female</option>
+                                            <option value="O">Other</option>
                                         </select>
                                     </div>
+
 
                                     {/* Password */}
                                     <div>

@@ -19,17 +19,17 @@ const About = () => {
       id: 2,
       name: "Jyoti Kumari",
       role: "Database Designer",
-      image: "",
+      image: "/assets/images/jyoti.jpg",
       bio: "Creative developer with some time experience as intern and freelancer...",
-      skills: []
+      skills: ["java", "html" ,"CSS" ,"JavaScript", "beginning spring boot"]
     },
     {
       id: 3,
       name: "Keshav Upadhyay",
-      role: "nothing",
-      image: "",
-      bio: "",
-      skills: ["Bakchodi krna"]
+      role: "Backend Devlopement ,Version Control",
+      image: "./assets/images/keshav.jpg",
+      bio:  "Creative developer 1 year experience as intern and Digital Experience",
+      skills: [ "Java", "MySql", "Html", "Css"]
     },
     {
       id: 4,

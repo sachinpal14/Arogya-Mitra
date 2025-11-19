@@ -10,7 +10,7 @@ export default function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
-
+    const loggedUser = useSelector((state) => state.user.loggedUser);
 
     const [error, setError] = useState(null);
 
@@ -43,7 +43,8 @@ export default function Login() {
                 password: formData.password
             })).unwrap();
 
-            console.log(result, " Login result");
+            // console.log(result, " Login result");
+            // console.log(loggedUser, "loggduser")
             setLoading(false);
          
             

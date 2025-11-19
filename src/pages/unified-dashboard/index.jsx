@@ -13,12 +13,11 @@ import { useSelector } from 'react-redux';
 const UnifiedDashboard = () => {
 
  
-  const loggedUser = useSelector(state => state.user.loggedUser);
-   const userRole = loggedUser.user.role ; // Default to 'patient' if not set
-
-
-
+  const loggedUser = useSelector(state => state?.user?.loggedUser);
+   const userRole = loggedUser?.role // Default to 'patient' if not set
   const [currentTime, setCurrentTime] = useState('');
+
+  // console.log(loggedUser)
 
 
   // Mock stats data
@@ -115,7 +114,7 @@ const UnifiedDashboard = () => {
           {/* Welcome Header */}
           <WelcomeHeader
             userRole={userRole}
-            userName={loggedUser?.user.name || 'User'}
+            userName={loggedUser?.name || 'User'}
             currentTime={currentTime}
           />
 

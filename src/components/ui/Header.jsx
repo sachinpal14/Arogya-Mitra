@@ -128,8 +128,8 @@ const Header = ({ isCollapsed = false }) => {
               <Icon name="User" size={16} color="white" />
             </div>
             <div className="hidden md:flex flex-col">
-              <span className="text-sm font-medium text-text-primary">{loggedUser.user.role === "Doctor" ? `Dr.${loggedUser.user.name}` : loggedUser.user.name}</span>
-              <span className="text-xs text-text-secondary capitalize">{loggedUser.user.role}</span>
+              <span className="text-sm font-medium text-text-primary">{loggedUser.role === "Doctor" ? `Dr.${loggedUser.name}` : loggedUser.name}</span>
+              <span className="text-xs text-text-secondary capitalize">{loggedUser.role}</span>
             </div>
           </div>
 

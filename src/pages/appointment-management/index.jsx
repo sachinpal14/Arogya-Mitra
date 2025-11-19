@@ -10,8 +10,13 @@ import ProviderCard from './components/ProviderCard';
 import AppointmentList from './components/AppointmentList';
 import BookingModal from './components/BookingModal';
 import QueueStatus from './components/QueueStatus';
+import { useSelector } from 'react-redux';
 
 const AppointmentManagement = () => {
+
+  const allUsers = useSelector(state => state.user.allUsers);
+  const doctors = allUsers.filter(u => u.user.role === "doctor");
+
 
   const [activeTab, setActiveTab] = useState('book');
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -243,7 +248,7 @@ const AppointmentManagement = () => {
   return (
     <div className="min-h-screen bg-surface overflow-hidden flex justify-center w-sceen">
       <Header />
-      
+
       <main className={`pt-14 healthcare-transition  overflow-hidden fixed w-full   h-full `}>
         <div className="p-6">
           {/* Page Header */}
@@ -256,7 +261,7 @@ const AppointmentManagement = () => {
                 </p>
               </div>
 
-              <div className="flex items-center space-x-4">
+              {/* <div className="flex items-center space-x-4">
                 <Button variant="outline">
                   <Icon name="Download" size={16} />
                   <span className="ml-2">Export Schedule</span>
@@ -266,7 +271,7 @@ const AppointmentManagement = () => {
                   <Icon name="Plus" size={16} />
                   <span className="ml-2">Quick Book</span>
                 </Button>
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -356,29 +361,29 @@ const AppointmentManagement = () => {
             <div className='w-full h-full '>
               <div className="max-w-full p-4 mx-auto">
                 <div className="">
-                  <h2 className="text-xl font-semibold text-text-primary">My Appointments</h2>  
+                  <h2 className="text-xl font-semibold text-text-primary">My Appointments</h2>
                   <p className="text-text-secondary ">
                     View, manage, and track your upcoming and past appointments
                   </p>
                 </div>
-               <div className='my-appointments overflow-y-scroll h-[500px] px-4 py-10'>
-                 <AppointmentList
-                  appointments={mockAppointments}
-                  onReschedule={handleReschedule}
-                  onCancel={handleCancel}
-                  onJoinCall={handleJoinCall}
-                /> 
-               </div>
+                <div className='my-appointments overflow-y-scroll h-[500px] px-4 py-10'>
+                  <AppointmentList
+                    appointments={mockAppointments}
+                    onReschedule={handleReschedule}
+                    onCancel={handleCancel}
+                    onJoinCall={handleJoinCall}
+                  />
+                </div>
               </div>
             </div>
-              
-            
+
+
           )}
 
           {activeTab === 'queue' && (
-           <div className=' w-full'>
-            <QueueStatus queueData={mockQueueData} />
-           </div>
+            <div className=' w-full'>
+              <QueueStatus queueData={mockQueueData} />
+            </div>
           )}
         </div>
       </main>
