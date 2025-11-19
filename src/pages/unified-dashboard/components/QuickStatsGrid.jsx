@@ -3,18 +3,18 @@ import Icon from '../../../components/AppIcon';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllUsers } from '../../../redux/userSlice.js';
 import { useNavigate } from 'react-router-dom';
+import UsersTable from '../../user-management/Components/UserTable.jsx';
 
 const QuickStatsGrid = ({ userRole, stats }) => {
 
 
   const { allUsers, loggedUser } = useSelector(state => state.user);
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const handleClick = () => {
     if (userRole === 'admin') {
-
-      navigate('/user-management');
-
+      isOpen ? setIsOpen(false) : setIsOpen(true);
     }
     console.log("Clicked on Quick Stats Grid", allUsers, userRole);
 
@@ -55,33 +55,37 @@ const QuickStatsGrid = ({ userRole, stats }) => {
 
   return (
     <div className="">
-      {getStatsForRole()?.map((stat, index) => (
-        <div
-          onClick={handleClick}
+      {getStatsForRole()?.map((stat, index) => {
+        if (!isOpen) return (
+          <div
+            onClick={handleClick}
 
-          key={index} className={` ${userRole == 'admin' ? "cursor-pointer" : "cursor-auto"} p-6 bg-white lg:w-[100%] mt-2 rounded-xl border border-slate-200 healthcare-shadow hover:healthcare-shadow-lg healthcare-transition`}>
-          <div className="flex items-center justify-between mb-4">
-            <div className={`w-12 h-12 ${stat?.bgColor} rounded-lg flex items-center justify-center`}>
-              <Icon name={stat?.icon} size={24} className={stat?.color} strokeWidth={2} />
-            </div>
-            <div className="text-right">
-              <div className="text-2xl font-bold text-text-primary">{stat?.value}</div>
-            </div>
-          </div>
-          <div>
-            <h3 className="text-sm font-medium text-text-secondary mb-1">{stat?.label}</h3>
-            <div className="flex items-center space-x-2">
-              <div className="w-full bg-slate-100 rounded-full h-2">
-                <div
-                  className={`h-2 rounded-full ${stat?.color?.replace('text-', 'bg-')}`}
-                  style={{ width: `${Math.random() * 40 + 60}%` }}
-                ></div>
+            key={index} className={` ${userRole == 'admin' ? "cursor-pointer" : "cursor-auto"} p-6 bg-white lg:w-[100%] mt-2 rounded-xl border border-slate-200 healthcare-shadow hover:healthcare-shadow-lg healthcare-transition`}>
+            <div className="flex items-center justify-between mb-4">
+              <div className={`w-12 h-12 ${stat?.bgColor} rounded-lg flex items-center justify-center`}>
+                <Icon name={stat?.icon} size={24} className={stat?.color} strokeWidth={2} />
               </div>
-              <span className="text-xs text-success font-medium">+{Math.floor(Math.random() * 15 + 5)}%</span>
+              <div className="text-right">
+                <div className="text-2xl font-bold text-text-primary">{stat?.value}</div>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-sm font-medium text-text-secondary mb-1">{stat?.label}</h3>
+              <div className="flex items-center space-x-2">
+                <div className="w-full bg-slate-100 rounded-full h-2">
+                  <div
+                    className={`h-2 rounded-full ${stat?.color?.replace('text-', 'bg-')}`}
+                    style={{ width: `${Math.random() * 40 + 60}%` }}
+                  ></div>
+                </div>
+                <span className="text-xs text-success font-medium">+{Math.floor(Math.random() * 15 + 5)}%</span>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        )
+      })}
+
+      {userRole === 'admin' && isOpen && <UsersTable isOpen={isOpen} setIsOpen={setIsOpen} />}
     </div>
   );
 };

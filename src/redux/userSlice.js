@@ -56,9 +56,9 @@ export const fetchAllUsers = createAsyncThunk(
 // GET USER BY ID
 export const fetchUserById = createAsyncThunk(
   "user/fetchUserById",
-  async (id, thunkAPI) => {
+  async (userId, thunkAPI) => {
     try {
-      const res = await api.get(`/users/patient/${id}`);
+      const res = await api.get(`/users/patient/${userId}`);
       return res.data;
     } catch {
       return thunkAPI.rejectWithValue("User not found");
@@ -69,9 +69,9 @@ export const fetchUserById = createAsyncThunk(
 // UPDATE USER
 export const updateUser = createAsyncThunk(
   "user/updateUser",
-  async ({ id, data }, thunkAPI) => {
+  async ({ userId, data }, thunkAPI) => {
     try {
-      const res = await api.put(`/users/update/${id}`, data);
+      const res = await api.put(`/users/update/${userId}`, data);
       return res.data;
     } catch {
       return thunkAPI.rejectWithValue("Cannot update user");
@@ -82,14 +82,15 @@ export const updateUser = createAsyncThunk(
 // DELETE USER
 export const deleteUser = createAsyncThunk(
   "user/deleteUser",
-  async (id, thunkAPI) => {
+  async (userId, thunkAPI) => {
     try {
-      const res = await api.delete(`/users/delete/${id}`);
+      const res = await api.delete(`/users/delete/${userId}`);
       return res.data;
     } catch {
       return thunkAPI.rejectWithValue("Cannot delete user");
     }
   }
+
 );
 
 const initialState = {
@@ -159,14 +160,19 @@ const userSlice = createSlice({
         state.selectedUser = action.payload;
       })
 
-      // UPDATE USER
+     // UPDATE USER
       .addCase(updateUser.fulfilled, (state, action) => {
         state.selectedUser = action.payload;
+        const index = state.allUsers.findIndex(u => u.userId === action.payload.userId);
+        if (index !== -1) {
+          state.allUsers[index] = action.payload;
+        }
       })
 
       // DELETE USER
-      .addCase(deleteUser.fulfilled, (state) => {
+      .addCase(deleteUser.fulfilled, (state, action) => {
         state.selectedUser = null;
+        state.allUsers = state.allUsers.filter(u => u.userId !== action.meta.arg);
       });
   },
 });

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Navsection from './Navsection';
- 
-const About = () => { 
+import { image } from 'd3';
+
+const About = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
 
   const teamMembers = [
@@ -16,43 +17,36 @@ const About = () => {
     },
     {
       id: 2,
-      name: "Michael Chen",
-      role: "Lead Developer",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
-      bio: "Full-stack developer passionate about creating elegant solutions.",
-      skills: ["React", "Node.js", "Python"]
+      name: "Jyoti Kumari",
+      role: "Database Designer",
+      image: "",
+      bio: "Creative developer with some time experience as intern and freelancer...",
+      skills: []
     },
     {
       id: 3,
-      name: "Emily Rodriguez",
-      role: "UX/UI Designer",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
-      bio: "Creative designer focused on user-centered design principles.",
-      skills: ["Figma", "UI Design", "Prototyping"]
+      name: "Keshav Upadhyay",
+      role: "nothing",
+      image: "",
+      bio: "",
+      skills: ["Bakchodi krna"]
     },
     {
       id: 4,
       name: "Deepanshu Varshnay",
       role: "Backend Engineer",
-      image: "",
+      image: "./assets/images/deepanshu.jpg",
       bio: "Backend specialist ensuring robust and scalable infrastructure.",
       skills: ["API Design", "Databases", "Java"]
     },
+
     {
-      id: 5,
-      name: "Jessica Williams",
-      role: "Frontend Developer",
-      image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop",
-      bio: "Frontend expert crafting beautiful and responsive interfaces.",
-      skills: ["CSS", "JavaScript", "Animation"]
-    },
-    {
-      id: 6,
-      name: "Alex Thompson",
-      role: "DevOps Engineer",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
-      bio: "DevOps guru maintaining seamless deployment and operations.",
-      skills: ["Docker", "CI/CD", "AWS"]
+      id: 4,
+      name: "Hina",
+      role: "Database Designer",
+      image:'',
+      bio: "Database and Frontend Designer crafting clean digital experiences......",
+      skills: ["React", "Java", "MySql"]
     }
   ];
 
@@ -79,16 +73,16 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-        <Navsection/>
+      <Navsection />
       {/* Hero Section */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="px-4 py-16 sm:py-24"
       >
         <div className="max-w-7xl mx-auto text-center">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
@@ -96,7 +90,7 @@ const About = () => {
           >
             Meet Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Amazing Team</span>
           </motion.h1>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.6 }}
@@ -109,7 +103,7 @@ const About = () => {
 
       {/* Team Grid */}
       <div className="max-w-7xl mx-auto px-4 pb-16 sm:pb-24">
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"

@@ -14,7 +14,8 @@ import PrivateRoute from "./pages/Authorization/PrivateRoute.jsx";
 import Medicines from "./pages/medicines/index.jsx";
 import SymptomsSection from "./pages/symptoms-section/index.jsx";
 import About from "./pages/About/Index.jsx";
-import UsersTable from "./pages/unified-dashboard/components/UserTable.jsx";
+
+import UserManagement from "./pages/user-management/index.jsx";
 
 
 
@@ -37,7 +38,7 @@ const RoutesComponent = () => {
           <Route path="/health-records" element={<PrivateRoute><HealthRecordsVault /></PrivateRoute>} />
           <Route path="/medicines" element={<PrivateRoute><Medicines/></PrivateRoute>} />
           <Route path="/symptoms-section" element={<PrivateRoute><SymptomsSection/></PrivateRoute>} />
-          <Route path="//user-management" element={<PrivateRoute><UsersTable/></PrivateRoute>} />
+          <Route path="//user-management" element={<PrivateRoute><UserManagement/></PrivateRoute>} />
           {/* 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -20,7 +20,7 @@ const QuickActionsPanel = ({ userRole, onActionClick }) => {
         // { id: 'analytics', label: 'View Analytics', icon: 'BarChart3', variant: 'ghost', route: '/analytics-reporting' }
       ],
       admin: [
-        { id: 'staff-schedule', label: 'Manage Staff', icon: 'UserCheck', variant: 'default', route: '/patient-care-ecosystem' },
+        { id: 'staff-schedule', label: 'Manage Staff', icon: 'UserCheck', variant: 'default', route: '/user-management' },
         // { id: 'inventory', label: 'Check Inventory', icon: 'Package', variant: 'outline', route: '/analytics-reporting' },
         { id: 'reports', label: 'Generate Reports', icon: 'FileBarChart', variant: 'secondary', route: '/health-records' },
         // { id: 'compliance', label: 'Compliance Check', icon: 'Shield', variant: 'ghost', route: '/analytics-reporting' }
