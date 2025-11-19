@@ -54,8 +54,8 @@ const Header = ({ isCollapsed = false }) => {
               <Icon name="Heart" size={24} color="white" strokeWidth={2.5} />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-text-primary">Arogya</span>
-              <span className="text-xs text-text-secondary font-medium">Mitra</span>
+              <span className="text-xl font-bold text-text-primary">Arogya Mitra</span>
+              {/* <span className="text-xs text-text-secondary font-medium">Mitra</span> */}
             </div>
           </div>
         </div>

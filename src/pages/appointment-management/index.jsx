@@ -10,15 +10,15 @@ import ProviderCard from './components/ProviderCard';
 import AppointmentList from './components/AppointmentList';
 import BookingModal from './components/BookingModal';
 import QueueStatus from './components/QueueStatus';
+import { useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Slice } from 'lucide-react';
 
 const AppointmentManagement = () => {
 
-  const allUsers = useSelector(state => state.user.allUsers);
-  const doctors = allUsers.filter(u => u.user.role === "doctor");
-
-
   const [activeTab, setActiveTab] = useState('book');
+
+  const { loggedUser } = useSelector(state => state.user)
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedSpecialty, setSelectedSpecialty] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -278,8 +278,25 @@ const AppointmentManagement = () => {
           {/* Tab Navigation */}
           <div className="mb-6">
             <div className="border-b border-slate-200">
-              <nav className="flex space-x-8">
-                {tabs?.map((tab) => (
+              {loggedUser.role == "doctor" ? <div>
+                <nav className="flex space-x-8">
+
+
+                  {tabs?.map((tab) => (
+                    <button
+                      key={tab?.id}
+                      onClick={() => setActiveTab(tab?.id)}
+                      className={`flex items-center space-x-2 py-4 px-1 border-b-2 font-medium text-sm healthcare-transition ${activeTab === tab?.id
+                        ? 'border-primary text-primary' : 'border-transparent text-text-secondary hover:text-text-primary hover:border-slate-300'
+                        }`}
+                    >
+                      <Icon name={tab?.icon} size={18} />
+                      <span>{tab?.name}</span>
+                    </button>
+                  ))}
+                </nav>
+              </div> :  <div className='flex space-x-8'>
+                {tabs?.slice(0,2).map((tab) => (
                   <button
                     key={tab?.id}
                     onClick={() => setActiveTab(tab?.id)}
@@ -291,7 +308,9 @@ const AppointmentManagement = () => {
                     <span>{tab?.name}</span>
                   </button>
                 ))}
-              </nav>
+              </div>}
+             
+
             </div>
           </div>
 
@@ -379,12 +398,17 @@ const AppointmentManagement = () => {
 
 
           )}
+          {
 
-          {activeTab === 'queue' && (
-            <div className=' w-full'>
-              <QueueStatus queueData={mockQueueData} />
+            loggedUser.role == "doctor" && <div>
+              {activeTab === 'queue' && (
+                <div className=' w-full'>
+                  <QueueStatus queueData={mockQueueData} />
+                </div>
+              )}
             </div>
-          )}
+
+          }
         </div>
       </main>
       {/* Booking Modal */}

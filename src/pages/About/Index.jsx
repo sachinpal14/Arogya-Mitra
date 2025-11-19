@@ -13,7 +13,9 @@ const About = () => {
       role: "Frontend Developer",
       image: "assets/images/sp.jpg",
       bio: "Creative developer 1 year experience as inter and freelancer......",
-      skills: ["React", "Node.js", "Javscript"]
+      skills: ["React", "Node.js", "Javscript"],
+      portfolio: "https://my-portfolio-theta-kohl-41.vercel.app/",
+      portfolio2: "https://my-new-portfolio-com.vercel.app/",
     },
     {
       id: 2,
@@ -21,15 +23,17 @@ const About = () => {
       role: "Database Designer",
       image: "/assets/images/jyoti.jpg",
       bio: "Creative developer with some time experience as intern and freelancer...",
-      skills: ["java", "html" ,"CSS" ,"JavaScript", "beginning spring boot"]
+      skills: ["java", "HTML", "JavaScript", "spring boot"],
+      resume: "./assets/Jyoti_Singh_resume.pdf"
     },
     {
       id: 3,
       name: "Keshav Upadhyay",
       role: "Backend Devlopement ,Version Control",
       image: "./assets/images/keshav.jpg",
-      bio:  "Creative developer 1 year experience as intern and Digital Experience",
-      skills: [ "Java", "MySql", "Html", "Css"]
+      bio: "Creative developer 1 year experience as intern and Digital Experience",
+      skills: ["Java", "MySql", "Html", "Css"],
+
     },
     {
       id: 4,
@@ -37,16 +41,18 @@ const About = () => {
       role: "Backend Engineer",
       image: "./assets/images/deepanshu.jpg",
       bio: "Backend specialist ensuring robust and scalable infrastructure.",
-      skills: ["API Design", "Databases", "Java"]
+      skills: ["API Design", "Databases", "Java"],
+      resume: "/assets/Deepanshu_Varshney_Resume.pdf"
     },
 
     {
       id: 4,
       name: "Hina",
       role: "Database Designer",
-      image:'',
+      image: './assets/images/hina.jpg',
       bio: "Database and Frontend Designer crafting clean digital experiences......",
-      skills: ["React", "Java", "MySql"]
+      skills: ["React", "Java", "MySql"],
+      portfolio: "https://hina-site-dev.netlify.app/"
     }
   ];
 
@@ -72,7 +78,7 @@ const About = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-[#010336]">
       <Navsection />
       {/* Hero Section */}
       <motion.div
@@ -159,6 +165,30 @@ const About = () => {
                       </motion.span>
                     ))}
                   </div>
+                  {member.id != 3 && <div className='mt-3'>
+
+                    {member.resume ? <button
+                      onClick={() => window.open(`${member.resume}`, "_blank")}
+                      className="text-white "
+                    >
+                      View Resume
+                    </button>
+                      : <div className='flex gap-5'>
+                        <a
+                          href={member.portfolio}
+                          className='text-white'
+                        >Portfolio</a>
+                        {member.id == 1 && <a
+                          href={member.portfolio2}
+                          className='text-white'
+                        >Portfolio 2</a>}
+                      </div>
+                    }
+
+
+
+                  </div>}
+
                 </div>
 
                 {/* Hover Effect Border */}
