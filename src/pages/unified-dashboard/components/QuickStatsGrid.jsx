@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Icon from '../../../components/AppIcon';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAllUsers } from '../../../redux/userSlice.js';
+import { useNavigate } from 'react-router-dom';
 
 const QuickStatsGrid = ({ userRole, stats }) => {
+
+
+  const { allUsers, loggedUser } = useSelector(state => state.user);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (userRole === 'admin') {
+
+      navigate('/user-management');
+
+    }
+    console.log("Clicked on Quick Stats Grid", allUsers, userRole);
+
+  }
+
+
+
   const getStatsForRole = () => {
     const roleStats = {
       patient: [
@@ -14,13 +34,13 @@ const QuickStatsGrid = ({ userRole, stats }) => {
         { label: 'Today\'s Patients', value: stats?.todaysPatients || '12', icon: 'Users', color: 'text-brand-primary', bgColor: 'bg-blue-50' },
         { label: 'Pending Reviews', value: stats?.pendingReviews || '8', icon: 'ClipboardList', color: 'text-warning', bgColor: 'bg-amber-50' },
         // { label: 'Teleconsultations', value: stats?.teleconsultations || '5', icon: 'Video', color: 'text-secondary', bgColor: 'bg-teal-50' },
-        { label: 'Patient Satisfaction', value: stats?.satisfaction || '4.8', icon: 'Star', color: 'text-success', bgColor: 'bg-emerald-50' }
+        // { label: 'Patient Satisfaction', value: stats?.satisfaction || '4.8', icon: 'Star', color: 'text-success', bgColor: 'bg-emerald-50' }
       ],
       admin: [
         { label: 'Bed Occupancy', value: stats?.bedOccupancy || '78%', icon: 'Bed', color: 'text-brand-primary', bgColor: 'bg-blue-50' },
-        { label: 'Staff on Duty', value: stats?.staffOnDuty || '145', icon: 'UserCheck', color: 'text-success', bgColor: 'bg-emerald-50' },
-        { label: 'Inventory Alerts', value: stats?.inventoryAlerts || '6', icon: 'AlertTriangle', color: 'text-destructive', bgColor: 'bg-red-50' },
-        { label: 'Revenue Today', value: stats?.revenueToday || '$24.5K', icon: 'DollarSign', color: 'text-secondary', bgColor: 'bg-teal-50' }
+        { label: 'All Users', value: '145', icon: 'UserCheck', color: 'text-success', bgColor: 'bg-emerald-50' },
+        // { label: 'Inventory Alerts', value: stats?.inventoryAlerts || '6', icon: 'AlertTriangle', color: 'text-destructive', bgColor: 'bg-red-50' },
+        // { label: 'Revenue Today', value: stats?.revenueToday || '$24.5K', icon: 'DollarSign', color: 'text-secondary', bgColor: 'bg-teal-50' }
       ],
       government: [
         { label: 'Active Facilities', value: stats?.activeFacilities || '127', icon: 'Building', color: 'text-brand-primary', bgColor: 'bg-blue-50' },
@@ -29,14 +49,17 @@ const QuickStatsGrid = ({ userRole, stats }) => {
         { label: 'Policy Compliance', value: stats?.policyCompliance || '94%', icon: 'Shield', color: 'text-secondary', bgColor: 'bg-teal-50' }
       ]
     };
-    
+
     return roleStats?.[userRole] || roleStats?.patient;
   };
 
   return (
     <div className="">
       {getStatsForRole()?.map((stat, index) => (
-        <div key={index} className=" p-6 bg-white lg:w-[100%] rounded-xl border border-slate-200 healthcare-shadow hover:healthcare-shadow-lg healthcare-transition">
+        <div
+          onClick={handleClick}
+
+          key={index} className={` ${userRole == 'admin' ? "cursor-pointer" : "cursor-auto"} p-6 bg-white lg:w-[100%] mt-2 rounded-xl border border-slate-200 healthcare-shadow hover:healthcare-shadow-lg healthcare-transition`}>
           <div className="flex items-center justify-between mb-4">
             <div className={`w-12 h-12 ${stat?.bgColor} rounded-lg flex items-center justify-center`}>
               <Icon name={stat?.icon} size={24} className={stat?.color} strokeWidth={2} />
@@ -49,7 +72,7 @@ const QuickStatsGrid = ({ userRole, stats }) => {
             <h3 className="text-sm font-medium text-text-secondary mb-1">{stat?.label}</h3>
             <div className="flex items-center space-x-2">
               <div className="w-full bg-slate-100 rounded-full h-2">
-                <div 
+                <div
                   className={`h-2 rounded-full ${stat?.color?.replace('text-', 'bg-')}`}
                   style={{ width: `${Math.random() * 40 + 60}%` }}
                 ></div>

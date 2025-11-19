@@ -3,6 +3,8 @@ import Button from '../../../components/ui/Button';
 import Icon from '../../../components/AppIcon';
 
 const QuickActionsPanel = ({ userRole, onActionClick }) => {
+
+  
   const getActionsForRole = () => {
     const roleActions = {
       patient: [
@@ -14,14 +16,14 @@ const QuickActionsPanel = ({ userRole, onActionClick }) => {
       doctor: [
         { id: 'patient-queue', label: 'View Patient Queue', icon: 'Users', variant: 'default', route: '/patient-care-ecosystem' },
         { id: 'prescribe', label: 'E-Prescribe', icon: 'Pill', variant: 'outline', route: '/health-records-vault' },
-        { id: 'teleconsult', label: 'Join Teleconsultation', icon: 'Video', variant: 'secondary', route: '/teleconsultation-suite' },
-        { id: 'analytics', label: 'View Analytics', icon: 'BarChart3', variant: 'ghost', route: '/analytics-reporting' }
+        // { id: 'teleconsult', label: 'Join Teleconsultation', icon: 'Video', variant: 'secondary', route: '/teleconsultation-suite' },
+        // { id: 'analytics', label: 'View Analytics', icon: 'BarChart3', variant: 'ghost', route: '/analytics-reporting' }
       ],
       admin: [
         { id: 'staff-schedule', label: 'Manage Staff', icon: 'UserCheck', variant: 'default', route: '/patient-care-ecosystem' },
-        { id: 'inventory', label: 'Check Inventory', icon: 'Package', variant: 'outline', route: '/analytics-reporting' },
-        { id: 'reports', label: 'Generate Reports', icon: 'FileBarChart', variant: 'secondary', route: '/analytics-reporting' },
-        { id: 'compliance', label: 'Compliance Check', icon: 'Shield', variant: 'ghost', route: '/analytics-reporting' }
+        // { id: 'inventory', label: 'Check Inventory', icon: 'Package', variant: 'outline', route: '/analytics-reporting' },
+        { id: 'reports', label: 'Generate Reports', icon: 'FileBarChart', variant: 'secondary', route: '/health-records' },
+        // { id: 'compliance', label: 'Compliance Check', icon: 'Shield', variant: 'ghost', route: '/analytics-reporting' }
       ],
       government: [
         { id: 'surveillance', label: 'Disease Surveillance', icon: 'Activity', variant: 'default', route: '/analytics-reporting' },
