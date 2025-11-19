@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllUsers } from '../../../redux/userSlice';
-import { IoMdArrowBack } from "react-icons/io";
+
 import { set } from 'react-hook-form';
 const UsersTable = ({ isOpen, setIsOpen }) => {
 

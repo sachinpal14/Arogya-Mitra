@@ -119,7 +119,7 @@ export default function Login() {
                             </div>
 
                             {/* Remember Me & Forgot Password */}
-                            <div className="flex items-center justify-between text-sm">
+                            {/* <div className="flex items-center justify-between text-sm">
                                 <label className="flex items-center cursor-pointer group">
                                     <input
                                         type="checkbox"
@@ -128,9 +128,9 @@ export default function Login() {
                                         onChange={handleInputChange}
                                         className="mr-2 w-4 h-4 text-blue-600 rounded focus:ring-2 focus:ring-blue-500 cursor-pointer"
                                     />
-                                    <span className="text-gray-600 group-hover:text-blue-600 transition-colors">
+                                     <span className="text-gray-600 group-hover:text-blue-600 transition-colors">
                                         Remember me
-                                    </span>
+                                    </span> 
                                 </label>
                                 <Link
                                     to="/forgot-password"
@@ -138,7 +138,7 @@ export default function Login() {
                                 >
                                     Forgot password?
                                 </Link>
-                            </div>
+                            </div> */}
 
                             {error && <div className="text-red-500 text-sm text-center font-semibold">{error}</div>}
 
