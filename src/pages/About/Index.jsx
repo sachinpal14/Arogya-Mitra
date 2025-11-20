@@ -23,7 +23,7 @@ const About = () => {
       role: "Database Designer",
       image: "/assets/images/jyoti.jpg",
       bio: "Creative developer with some time experience as intern and freelancer...",
-      skills: ["java", "HTML", "JavaScript", "spring boot"],
+      skills: ["java", "MySQL"],
       resume: "./assets/Jyoti_Singh_resume.pdf"
     },
     {
@@ -159,7 +159,7 @@ const About = () => {
                         initial={{ opacity: 0, scale: 0 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.1 * index }}
-                        className="px-3 py-1 bg-purple-500/30 text-purple-200 rounded-full text-xs font-medium border border-purple-400/30"
+                        className="px-3 py-1 bg-purple-500/30 text-purple-200 rounded-full text-xs font-medium border border-purple-400/30 capitalize"
                       >
                         {skill}
                       </motion.span>
