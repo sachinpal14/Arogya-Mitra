@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/ui/Header.jsx';
-import Sidebar from '../../components/ui/Sidebar';
+ 
 import WelcomeHeader from './components/WelcomeHeader.jsx';
 import QuickStatsGrid from './components/QuickStatsGrid';
 import QuickActionsPanel from './components/QuickActionsPanel';
 import RecentActivityFeed from './components/RecentActivityFeed';
-import UpcomingSchedule from './components/UpcomingSchedule';
-import SystemStatusPanel from './components/SystemStatusPanel';
-import NotificationCenter from './components/NotificationCenter';
+ 
 import { useSelector } from 'react-redux';
+import { motion } from "framer-motion";
 
 const UnifiedDashboard = () => {
 
@@ -89,10 +88,49 @@ const UnifiedDashboard = () => {
 
 
       <Header />
-    <div className='w-full h-[cal(100%-100px)]'>
-        <img className='object-cover w-full h-full' src="/assets/images/hospitall.jpg" alt="hospital" />
+   {userRole!='admin' &&  <div className='w-full relative h-screen '>
+   
 
-    </div>
+<div className='w-full absolute top-16 h-screen z-40 flex justify-start px-8 items-center gap-5 py-2 flex-col text-3xl'>
+
+  <motion.div 
+    className='w-full mt-40'
+    initial={{ opacity: 0, x: 80 }}   // slide from left
+    animate={{ opacity: 1, x: 0 }}     // move to normal
+    transition={{ duration: 0.5, delay: 0.1 }}
+  >
+    <p className='text-black'>Arogya Mitra</p>
+    <div className='w-[80%] h-1 bg-black/50 rounded-full'></div>
+  </motion.div>
+
+  {/* TEXT SECTION */}
+  <motion.div 
+    className='w-full flex flex-col gap-5'
+    initial={{ opacity: 0, x: 120 }}   // deeper slide from left
+    animate={{ opacity: 1, x: 0 }}      // slide into place
+    transition={{ duration: 0.6, delay: 0.3 }}
+  >
+    <p className='text-7xl font-serif text-white'>
+      Your Health, Our Priority.
+    </p>
+
+    <p className='text-3xl font-serif text-white'>
+      Simplifying Care with Trusted Care.
+    </p>
+  </motion.div>
+
+</div>
+
+        <motion.img
+    className='object-cover z-10 w-full h-full filter brightness-75'
+    src="/assets/images/hospitall.jpg"
+    alt="hospital"
+    initial={{ scale: 1.3 }}      // start zoomed in
+    animate={{ scale: 1 }}        // zoom out to normal
+    transition={{ duration: 1.5 }}  // smooth slow effect
+  />
+
+    </div>}
       {/* <Sidebar isCollapsed={sidebarCollapsed} onToggle={handleSidebarToggle} /> */}
       <main className={`pt-16 healthcare-transition `}>
         <div className="p-6 space-y-6">

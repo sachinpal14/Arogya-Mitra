@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllUsers } from '../../../redux/userSlice';
 
-import { set } from 'react-hook-form';
+
 const UsersTable = ({ isOpen, setIsOpen }) => {
 
   const { allUsers, loggedUser } = useSelector(state => state.user);
   const dispatch = useDispatch();
-  const userRole = loggedUser?.user?.role;
+  const userRole = loggedUser?.role;
   useEffect(() => {
     if (userRole == 'admin') {
       dispatch(fetchAllUsers());

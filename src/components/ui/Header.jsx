@@ -45,7 +45,7 @@ const Header = ({ isCollapsed = false }) => {
   const toggleMoreMenu = () => setIsMoreMenuOpen(!isMoreMenuOpen);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200 healthcare-shadow">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-slate-200 healthcare-shadow ">
       <div className="flex items-center justify-between h-16 px-6">
         {/* Logo Section */}
         <div className="flex items-center space-x-4">
