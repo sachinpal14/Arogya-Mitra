@@ -9,12 +9,12 @@ import UpcomingSchedule from './components/UpcomingSchedule';
 import SystemStatusPanel from './components/SystemStatusPanel';
 import NotificationCenter from './components/NotificationCenter';
 import { useSelector } from 'react-redux';
- 
+
 const UnifiedDashboard = () => {
 
- 
+
   const loggedUser = useSelector(state => state?.user?.loggedUser);
-   const userRole = loggedUser?.role // Default to 'patient' if not set
+  const userRole = loggedUser?.role // Default to 'patient' if not set
   const [currentTime, setCurrentTime] = useState('');
 
   // console.log(loggedUser)
@@ -85,7 +85,14 @@ const UnifiedDashboard = () => {
 
   return (
     <div className="min-h-screen bg-slate-50">
+
+
+
       <Header />
+    <div className='w-full h-[cal(100%-100px)]'>
+        <img className='object-cover w-full h-full' src="/assets/images/hospitall.jpg" alt="hospital" />
+
+    </div>
       {/* <Sidebar isCollapsed={sidebarCollapsed} onToggle={handleSidebarToggle} /> */}
       <main className={`pt-16 healthcare-transition `}>
         <div className="p-6 space-y-6">
@@ -135,33 +142,33 @@ const UnifiedDashboard = () => {
 
           {/* Main Content Grid */}
           <div className="w-full">
-          
-           
 
 
-              {/* Recent Activity */}
-              <RecentActivityFeed
-                userRole={userRole}
-                activities={[]}
-              />
 
-              {/* System Status */}
-              {/* <SystemStatusPanel
+
+            {/* Recent Activity */}
+            <RecentActivityFeed
+              userRole={userRole}
+              activities={[]}
+            />
+
+            {/* System Status */}
+            {/* <SystemStatusPanel
                 userRole={userRole}
                 systemStatus={{}}
               /> */}
-           
+
 
             {/* Right Column */}
             {/* <div className="space-y-6"> */}
-              {/* Upcoming Schedule */}
-              {/* <UpcomingSchedule
+            {/* Upcoming Schedule */}
+            {/* <UpcomingSchedule
                 userRole={userRole}
                 scheduleItems={[]}
               /> */}
 
-              {/* Notification Center */}
-              {/* <NotificationCenter
+            {/* Notification Center */}
+            {/* <NotificationCenter
                 userRole={userRole}
                 notifications={[]}
               /> */}
