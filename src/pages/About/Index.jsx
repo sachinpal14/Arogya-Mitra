@@ -46,13 +46,22 @@ const About = () => {
     },
 
     {
-      id: 4,
+      id: 5,
       name: "Hina",
       role: "Database Designer",
       image: './assets/images/hina.jpg',
       bio: "Database and Frontend Designer crafting clean digital experiences......",
       skills: ["React", "Java", "MySql"],
       portfolio: "https://hina-site-dev.netlify.app/"
+    },
+    {
+      id: 6,
+      name: "Yuvraj Singh",
+      role: "Frontend Developer",
+      image: './assets/images/yuvraj.jpg',
+      bio: "Createive developer with some time experience freelancer...",
+      skills: ["React", "HTML", "CSS"],
+      portfolio: "https://yuvraj-singh-001.github.io/yuvraj-portfolio/"
     }
   ];
 
