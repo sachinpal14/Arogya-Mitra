@@ -1,5 +1,7 @@
+import { motion } from 'framer-motion'
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 
 const Navsection = () => {
   return (
@@ -8,7 +10,7 @@ const Navsection = () => {
         <Link
         to="/login"
         className=" cursor-pointer lg:text-sm text-[15px] text-white hover:text-text-primary transition-all duration-200 bg-blue-500 rounded-lg px-10 py-2"
-        >Sign In</Link>
+        >Login</Link>
         <Link
         to="/signup"
         className='cursor-pointer text-sm text-white hover:bg-white hover:text-black  transition-all duration-500 border-blue-500 border-2 px-10 py-2 rounded-lg'

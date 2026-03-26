@@ -29,7 +29,7 @@ const Header = ({ isCollapsed = false }) => {
     // { name: 'Analytics', path: '/analytics-reportingAbout', icon: 'BarChart3' },
        { name: 'Medicine', path: '/medicines', icon: <AiFillMedicineBox /> },
     { name: 'Symptoms', path: '/symptoms-section', icon: 'Activity' },
-    { name: 'About us', path: '/', icon: <FcAbout size={20} /> },
+    { name: 'About us', path: '/about', icon: <FcAbout size={20} /> },
    
   ];
 

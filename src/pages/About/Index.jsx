@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import Navsection from './Navsection';
-import { image } from 'd3';
+
 
 const About = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -17,24 +16,24 @@ const About = () => {
       portfolio: "https://my-portfolio-theta-kohl-41.vercel.app/",
       portfolio2: "https://my-new-portfolio-com.vercel.app/",
     },
-    {
-      id: 2,
-      name: "Jyoti Kumari",
-      role: "Database Designer",
-      image: "/assets/images/jyoti.jpg",
-      bio: "Creative developer with some time experience as intern and freelancer...",
-      skills: ["java", "MySQL"],
-      resume: "./assets/Jyoti_Singh_resume.pdf"
-    },
-    {
-      id: 3,
-      name: "Keshav Upadhyay",
-      role: "Backend Devlopement ,Version Control",
-      image: "./assets/images/keshav.jpg",
-      bio: "Creative developer 1 year experience as intern and Digital Experience",
-      skills: ["Java", "MySql", "Html", "Css"],
+    // {
+    //   id: 2,
+    //   name: "Jyoti Kumari",
+    //   role: "Database Designer",
+    //   image: "/assets/images/jyoti.jpg",
+    //   bio: "Creative developer with some time experience as intern and freelancer...",
+    //   skills: ["java", "MySQL"],
+    //   resume: "./assets/Jyoti_Singh_resume.pdf"
+    // },
+    // {
+    //   id: 3,
+    //   name: "Keshav Upadhyay",
+    //   role: "Backend Devlopement ,Version Control",
+    //   image: "./assets/images/keshav.jpg",
+    //   bio: "Creative developer 1 year experience as intern and Digital Experience",
+    //   skills: ["Java", "MySql", "Html", "Css"],
 
-    },
+    // },
     {
       id: 4,
       name: "Deepanshu Varshnay",
@@ -45,23 +44,31 @@ const About = () => {
       resume: "/assets/Deepanshu_Varshney_Resume.pdf"
     },
 
+    // {
+    //   id: 5,
+    //   name: "Hina",
+    //   role: "Database Designer",
+    //   image: './assets/images/hina.jpg',
+    //   bio: "Database and Frontend Designer crafting clean digital experiences......",
+    //   skills: ["React", "Java", "MySql"],
+    //   portfolio: "https://hina-site-dev.netlify.app/"
+    // },
+    // {
+    //   id: 6,
+    //   name: "Yuvraj Singh",
+    //   role: "Frontend Developer",
+    //   image: './assets/images/yuvraj.jpg',
+    //   bio: "Createive developer with some time experience freelancer...",
+    //   skills: ["React", "HTML", "CSS"],
+    //   portfolio: "https://yuvraj-singh-001.github.io/yuvraj-portfolio/"
+    // },
     {
-      id: 5,
-      name: "Hina",
-      role: "Database Designer",
-      image: './assets/images/hina.jpg',
-      bio: "Database and Frontend Designer crafting clean digital experiences......",
-      skills: ["React", "Java", "MySql"],
-      portfolio: "https://hina-site-dev.netlify.app/"
-    },
-    {
-      id: 6,
-      name: "Yuvraj Singh",
-      role: "Frontend Developer",
-      image: './assets/images/yuvraj.jpg',
-      bio: "Createive developer with some time experience freelancer...",
-      skills: ["React", "HTML", "CSS"],
-      portfolio: "https://yuvraj-singh-001.github.io/yuvraj-portfolio/"
+      id: 7,
+      name: "Sachin Kumar",
+      role: "Git & Github Management",
+      image: './assets/images/Sachin Kumar.jpeg' ,
+      skills: ["Git", "HTML", "CSS"],
+     portfolio:""
     }
   ];
 
@@ -88,7 +95,7 @@ const About = () => {
 
   return (
     <div className="min-h-screen bg-[#010336]">
-      <Navsection />
+      
       {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0, y: -50 }}
@@ -117,7 +124,7 @@ const About = () => {
       </motion.div>
 
       {/* Team Grid */}
-      <div className="max-w-7xl mx-auto px-4 pb-16 sm:pb-24">
+      <div className="max-w-7xl mx-auto px-4 pb-16 sm:pb-24 ">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -174,7 +181,7 @@ const About = () => {
                       </motion.span>
                     ))}
                   </div>
-                  {member.id != 3 && <div className='mt-3'>
+                  {member.id != 7 && <div className='mt-3'>
 
                     {member.resume ? <button
                       onClick={() => window.open(`${member.resume}`, "_blank")}

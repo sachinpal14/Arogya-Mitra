@@ -14,8 +14,9 @@ import PrivateRoute from "./pages/Authorization/PrivateRoute.jsx";
 import Medicines from "./pages/medicines/index.jsx";
 import SymptomsSection from "./pages/symptoms-section/index.jsx";
 import About from "./pages/About/Index.jsx";
-
 import UserManagement from "./pages/user-management/index.jsx";
+import Introduction from "./pages/Introduction/Introduction.jsx";
+import Convinience from "./pages/user-management/Convinience.jsx";
 
 
 
@@ -26,9 +27,11 @@ const RoutesComponent = () => {
       <ErrorBoundary>
         <ScrollToTop />
         <Routes>
-          <Route path="/" element={<About/>} />
+          <Route path="/" element={<Introduction/>} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/signup" element={<Signup />} /> 
+          <Route path="/convinience" element={<Convinience />} /> 
+          
         
 
           {/* Protected Routes */}
@@ -38,7 +41,8 @@ const RoutesComponent = () => {
           <Route path="/health-records" element={<PrivateRoute><HealthRecordsVault /></PrivateRoute>} />
           <Route path="/medicines" element={<PrivateRoute><Medicines/></PrivateRoute>} />
           <Route path="/symptoms-section" element={<PrivateRoute><SymptomsSection/></PrivateRoute>} />
-          <Route path="//user-management" element={<PrivateRoute><UserManagement/></PrivateRoute>} />
+          <Route path="/user-management" element={<PrivateRoute><UserManagement/></PrivateRoute>} />
+          <Route path="/about" element={<PrivateRoute><About/></PrivateRoute>} />
           {/* 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
