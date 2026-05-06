@@ -1,209 +1,222 @@
-import React, { useState, useEffect } from 'react';
-import Header from '../../components/ui/Header';
-import Sidebar from '../../components/ui/Sidebar';
-import Icon from '../../components/AppIcon';
-import Button from '../../components/ui/Button';
-import MetricsCard from './components/MetricsCard';
-import ChartContainer from './components/ChartContainer';
-import FilterPanel from './components/FilterPanel';
-import ReportTable from './components/ReportTable';
-import DashboardCustomizer from './components/DashboardCustomizer';
-import AlertsPanel from './components/AlertsPanel';
+import React, { useState, useEffect } from "react";
+import Header from "../../components/ui/Header";
+import Sidebar from "../../components/ui/Sidebar";
+import Icon from "../../components/AppIcon";
+import Button from "../../components/ui/Button";
+import MetricsCard from "./components/MetricsCard";
+import ChartContainer from "./components/ChartContainer";
+import FilterPanel from "./components/FilterPanel";
+import ReportTable from "./components/ReportTable";
+import DashboardCustomizer from "./components/DashboardCustomizer";
+import AlertsPanel from "./components/AlertsPanel";
 
 const AnalyticsReporting = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [filterCollapsed, setFilterCollapsed] = useState(false);
   const [customizeOpen, setCustomizeOpen] = useState(false);
-  const [selectedDashboard, setSelectedDashboard] = useState('operational');
+  const [selectedDashboard, setSelectedDashboard] = useState("operational");
   const [filters, setFilters] = useState({
-    dateRange: '30days',
-    department: 'all',
-    userType: 'all',
-    reportType: 'operational'
+    dateRange: "30days",
+    department: "all",
+    userType: "all",
+    reportType: "operational",
   });
 
   // Mock data for metrics cards
   const metricsData = [
     {
-      title: 'Total Patients Served',
-      value: '12,847',
-      change: '+8.2%',
-      changeType: 'positive',
-      icon: 'Users',
-      color: 'text-primary'
+      title: "Total Patients Served",
+      value: "12,847",
+      change: "+8.2%",
+      changeType: "positive",
+      icon: "Users",
+      color: "text-primary",
     },
     {
-      title: 'Average Wait Time',
-      value: '18 min',
-      change: '-12%',
-      changeType: 'positive',
-      icon: 'Clock',
-      color: 'text-success'
+      title: "Average Wait Time",
+      value: "18 min",
+      change: "-12%",
+      changeType: "positive",
+      icon: "Clock",
+      color: "text-success",
     },
     {
-      title: 'Patient Satisfaction',
-      value: '94.2%',
-      change: '+3.1%',
-      changeType: 'positive',
-      icon: 'Heart',
-      color: 'text-secondary'
+      title: "Patient Satisfaction",
+      value: "94.2%",
+      change: "+3.1%",
+      changeType: "positive",
+      icon: "Heart",
+      color: "text-secondary",
     },
     {
-      title: 'Bed Occupancy Rate',
-      value: '87%',
-      change: '+5.4%',
-      changeType: 'warning',
-      icon: 'Bed',
-      color: 'text-warning'
+      title: "Bed Occupancy Rate",
+      value: "87%",
+      change: "+5.4%",
+      changeType: "warning",
+      icon: "Bed",
+      color: "text-warning",
     },
     {
-      title: 'Emergency Response Time',
-      value: '4.2 min',
-      change: '-8%',
-      changeType: 'positive',
-      icon: 'Zap',
-      color: 'text-destructive'
+      title: "Emergency Response Time",
+      value: "4.2 min",
+      change: "-8%",
+      changeType: "positive",
+      icon: "Zap",
+      color: "text-destructive",
     },
     {
-      title: 'Staff Productivity',
-      value: '92%',
-      change: '+2.8%',
-      changeType: 'positive',
-      icon: 'Activity',
-      color: 'text-brand-primary'
-    }
+      title: "Staff Productivity",
+      value: "92%",
+      change: "+2.8%",
+      changeType: "positive",
+      icon: "Activity",
+      color: "text-brand-primary",
+    },
   ];
 
   // Mock data for charts
   const patientVolumeData = [
-    { name: 'Jan', value: 1200 },
-    { name: 'Feb', value: 1100 },
-    { name: 'Mar', value: 1400 },
-    { name: 'Apr', value: 1300 },
-    { name: 'May', value: 1600 },
-    { name: 'Jun', value: 1500 },
-    { name: 'Jul', value: 1800 },
-    { name: 'Aug', value: 1700 },
-    { name: 'Sep', value: 1900 },
-    { name: 'Oct', value: 2100 }
+    { name: "Jan", value: 1200 },
+    { name: "Feb", value: 1100 },
+    { name: "Mar", value: 1400 },
+    { name: "Apr", value: 1300 },
+    { name: "May", value: 1600 },
+    { name: "Jun", value: 1500 },
+    { name: "Jul", value: 1800 },
+    { name: "Aug", value: 1700 },
+    { name: "Sep", value: 1900 },
+    { name: "Oct", value: 2100 },
   ];
 
   const departmentDistribution = [
-    { name: 'Emergency', value: 35 },
-    { name: 'Cardiology', value: 25 },
-    { name: 'Pediatrics', value: 20 },
-    { name: 'Surgery', value: 15 },
-    { name: 'Other', value: 5 }
+    { name: "Emergency", value: 35 },
+    { name: "Cardiology", value: 25 },
+    { name: "Pediatrics", value: 20 },
+    { name: "Surgery", value: 15 },
+    { name: "Other", value: 5 },
   ];
 
   const diseaseTrackingData = [
-    { name: 'Week 1', value: 45 },
-    { name: 'Week 2', value: 52 },
-    { name: 'Week 3', value: 48 },
-    { name: 'Week 4', value: 61 },
-    { name: 'Week 5', value: 55 },
-    { name: 'Week 6', value: 67 },
-    { name: 'Week 7', value: 73 },
-    { name: 'Week 8', value: 69 }
+    { name: "Week 1", value: 45 },
+    { name: "Week 2", value: 52 },
+    { name: "Week 3", value: 48 },
+    { name: "Week 4", value: 61 },
+    { name: "Week 5", value: 55 },
+    { name: "Week 6", value: 67 },
+    { name: "Week 7", value: 73 },
+    { name: "Week 8", value: 69 },
   ];
 
   // Mock data for reports table
   const reportsData = [
     {
-      id: 'RPT-001',
-      name: 'Monthly Operations Report',
-      type: 'Operational',
-      department: 'Administration',
-      generatedBy: 'Dr. Sarah Chen',
-      date: '2025-10-01',
-      status: 'Completed',
-      size: '2.4 MB'
+      id: "RPT-001",
+      name: "Monthly Operations Report",
+      type: "Operational",
+      department: "Administration",
+      generatedBy: "Dr. Sarah Chen",
+      date: "2025-10-01",
+      status: "Completed",
+      size: "2.4 MB",
     },
     {
-      id: 'RPT-002',
-      name: 'Disease Surveillance Summary',
-      type: 'Public Health',
-      department: 'Epidemiology',
-      generatedBy: 'Dr. Michael Rodriguez',
-      date: '2025-10-02',
-      status: 'In Progress',
-      size: '1.8 MB'
+      id: "RPT-002",
+      name: "Disease Surveillance Summary",
+      type: "Public Health",
+      department: "Epidemiology",
+      generatedBy: "Dr. Michael Rodriguez",
+      date: "2025-10-02",
+      status: "In Progress",
+      size: "1.8 MB",
     },
     {
-      id: 'RPT-003',
-      name: 'Financial Performance Q3',
-      type: 'Financial',
-      department: 'Finance',
-      generatedBy: 'Lisa Thompson',
-      date: '2025-09-30',
-      status: 'Completed',
-      size: '3.2 MB'
+      id: "RPT-003",
+      name: "Financial Performance Q3",
+      type: "Financial",
+      department: "Finance",
+      generatedBy: "Lisa Thompson",
+      date: "2025-09-30",
+      status: "Completed",
+      size: "3.2 MB",
     },
     {
-      id: 'RPT-004',
-      name: 'Clinical Quality Metrics',
-      type: 'Clinical',
-      department: 'Quality Assurance',
-      generatedBy: 'Dr. James Wilson',
-      date: '2025-10-03',
-      status: 'Pending Review',
-      size: '1.5 MB'
+      id: "RPT-004",
+      name: "Clinical Quality Metrics",
+      type: "Clinical",
+      department: "Quality Assurance",
+      generatedBy: "Dr. James Wilson",
+      date: "2025-10-03",
+      status: "Pending Review",
+      size: "1.5 MB",
     },
     {
-      id: 'RPT-005',
-      name: 'Staff Productivity Analysis',
-      type: 'HR',
-      department: 'Human Resources',
-      generatedBy: 'Maria Garcia',
-      date: '2025-10-01',
-      status: 'Completed',
-      size: '2.1 MB'
-    }
+      id: "RPT-005",
+      name: "Staff Productivity Analysis",
+      type: "HR",
+      department: "Human Resources",
+      generatedBy: "Maria Garcia",
+      date: "2025-10-01",
+      status: "Completed",
+      size: "2.1 MB",
+    },
   ];
 
   const reportColumns = [
-    { key: 'id', label: 'Report ID' },
-    { key: 'name', label: 'Report Name' },
-    { key: 'type', label: 'Type', render: (value) => (
-      <span className="px-2 py-1 bg-primary/10 text-primary text-xs font-medium rounded">
-        {value}
-      </span>
-    )},
-    { key: 'department', label: 'Department' },
-    { key: 'generatedBy', label: 'Generated By' },
-    { key: 'date', label: 'Date' },
-    { key: 'status', label: 'Status', render: (value) => (
-      <span className={`px-2 py-1 text-xs font-medium rounded ${
-        value === 'Completed' ? 'bg-success/10 text-success' :
-        value === 'In Progress'? 'bg-warning/10 text-warning' : 'bg-muted text-text-secondary'
-      }`}>
-        {value}
-      </span>
-    )},
-    { key: 'size', label: 'Size' }
+    { key: "id", label: "Report ID" },
+    { key: "name", label: "Report Name" },
+    {
+      key: "type",
+      label: "Type",
+      render: (value) => (
+        <span className="px-2 py-1 bg-primary/10 text-primary text-xs font-medium rounded">
+          {value}
+        </span>
+      ),
+    },
+    { key: "department", label: "Department" },
+    { key: "generatedBy", label: "Generated By" },
+    { key: "date", label: "Date" },
+    {
+      key: "status",
+      label: "Status",
+      render: (value) => (
+        <span
+          className={`px-2 py-1 text-xs font-medium rounded ${
+            value === "Completed"
+              ? "bg-success/10 text-success"
+              : value === "In Progress"
+                ? "bg-warning/10 text-warning"
+                : "bg-muted text-text-secondary"
+          }`}
+        >
+          {value}
+        </span>
+      ),
+    },
+    { key: "size", label: "Size" },
   ];
 
   const dashboardTypes = [
-    { id: 'operational', name: 'Operational Dashboard', icon: 'BarChart3' },
-    { id: 'clinical', name: 'Clinical Outcomes', icon: 'Activity' },
-    { id: 'financial', name: 'Financial Performance', icon: 'DollarSign' },
-    { id: 'population', name: 'Population Health', icon: 'Globe' },
-    { id: 'government', name: 'Government Reporting', icon: 'Shield' }
+    { id: "operational", name: "Operational Dashboard", icon: "BarChart3" },
+    { id: "clinical", name: "Clinical Outcomes", icon: "Activity" },
+    { id: "financial", name: "Financial Performance", icon: "DollarSign" },
+    { id: "population", name: "Population Health", icon: "Globe" },
+    { id: "government", name: "Government Reporting", icon: "Shield" },
   ];
 
   const handleFiltersChange = (newFilters) => {
     setFilters(newFilters);
     // In a real app, this would trigger data refresh
-    console.log('Filters updated:', newFilters);
+    console.log("Filters updated:", newFilters);
   };
 
   const handleDashboardSave = (selectedWidgets) => {
-    console.log('Dashboard saved with widgets:', selectedWidgets);
+    console.log("Dashboard saved with widgets:", selectedWidgets);
     // In a real app, this would save the dashboard configuration
   };
 
   useEffect(() => {
-    document.title = 'Analytics & Reporting - MedConnect Portal';
+    document.title = "Analytics & Reporting - MedConnect Portal";
   }, []);
 
   return (
@@ -216,9 +229,12 @@ const AnalyticsReporting = () => {
           <div className="bg-white p-6 rounded-lg border border-slate-200 healthcare-shadow">
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h1 className="text-2xl font-bold text-text-primary">Analytics & Reporting</h1>
+                <h1 className="text-2xl font-bold text-text-primary">
+                  Analytics & Reporting
+                </h1>
                 <p className="text-text-secondary mt-1">
-                  Comprehensive healthcare analytics, performance monitoring, and compliance reporting
+                  Comprehensive healthcare analytics, performance monitoring,
+                  and compliance reporting
                 </p>
               </div>
               <div className="flex items-center space-x-3">
@@ -245,7 +261,9 @@ const AnalyticsReporting = () => {
               {dashboardTypes?.map((dashboard) => (
                 <Button
                   key={dashboard?.id}
-                  variant={selectedDashboard === dashboard?.id ? "default" : "outline"}
+                  variant={
+                    selectedDashboard === dashboard?.id ? "default" : "outline"
+                  }
                   onClick={() => setSelectedDashboard(dashboard?.id)}
                   iconName={dashboard?.icon}
                   iconPosition="left"
@@ -304,7 +322,7 @@ const AnalyticsReporting = () => {
               type="line"
               data={diseaseTrackingData}
               height={300}
-              colors={['#DC2626']}
+              colors={["#DC2626"]}
             />
             <AlertsPanel />
           </div>
@@ -320,12 +338,19 @@ const AnalyticsReporting = () => {
           <div className="bg-white p-6 rounded-lg border border-slate-200 healthcare-shadow">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="text-lg font-semibold text-text-primary">Government & Policy Insights</h3>
+                <h3 className="text-lg font-semibold text-text-primary">
+                  Government & Policy Insights
+                </h3>
                 <p className="text-sm text-text-secondary mt-1">
-                  Regional health data and policy impact analysis for government stakeholders
+                  Regional health data and policy impact analysis for government
+                  stakeholders
                 </p>
               </div>
-              <Button variant="outline" iconName="ExternalLink" iconPosition="right">
+              <Button
+                variant="outline"
+                iconName="ExternalLink"
+                iconPosition="right"
+              >
                 View Full Report
               </Button>
             </div>
@@ -334,37 +359,55 @@ const AnalyticsReporting = () => {
               <div className="bg-muted p-4 rounded-lg">
                 <div className="flex items-center space-x-3 mb-3">
                   <Icon name="MapPin" size={20} className="text-primary" />
-                  <h4 className="font-medium text-text-primary">Regional Coverage</h4>
+                  <h4 className="font-medium text-text-primary">
+                    Regional Coverage
+                  </h4>
                 </div>
-                <p className="text-2xl font-bold text-text-primary">15 Districts</p>
-                <p className="text-sm text-text-secondary">Healthcare facilities monitored</p>
+                <p className="text-2xl font-bold text-text-primary">
+                  15 Districts
+                </p>
+                <p className="text-sm text-text-secondary">
+                  Healthcare facilities monitored
+                </p>
               </div>
 
               <div className="bg-muted p-4 rounded-lg">
                 <div className="flex items-center space-x-3 mb-3">
                   <Icon name="Users" size={20} className="text-secondary" />
-                  <h4 className="font-medium text-text-primary">Population Served</h4>
+                  <h4 className="font-medium text-text-primary">
+                    Population Served
+                  </h4>
                 </div>
                 <p className="text-2xl font-bold text-text-primary">2.4M</p>
-                <p className="text-sm text-text-secondary">Citizens in coverage area</p>
+                <p className="text-sm text-text-secondary">
+                  Citizens in coverage area
+                </p>
               </div>
 
               <div className="bg-muted p-4 rounded-lg">
                 <div className="flex items-center space-x-3 mb-3">
                   <Icon name="TrendingUp" size={20} className="text-success" />
-                  <h4 className="font-medium text-text-primary">Health Outcomes</h4>
+                  <h4 className="font-medium text-text-primary">
+                    Health Outcomes
+                  </h4>
                 </div>
                 <p className="text-2xl font-bold text-text-primary">+12%</p>
-                <p className="text-sm text-text-secondary">Improvement this quarter</p>
+                <p className="text-sm text-text-secondary">
+                  Improvement this quarter
+                </p>
               </div>
 
               <div className="bg-muted p-4 rounded-lg">
                 <div className="flex items-center space-x-3 mb-3">
                   <Icon name="Shield" size={20} className="text-warning" />
-                  <h4 className="font-medium text-text-primary">Compliance Score</h4>
+                  <h4 className="font-medium text-text-primary">
+                    Compliance Score
+                  </h4>
                 </div>
                 <p className="text-2xl font-bold text-text-primary">96.8%</p>
-                <p className="text-sm text-text-secondary">Regulatory compliance rate</p>
+                <p className="text-sm text-text-secondary">
+                  Regulatory compliance rate
+                </p>
               </div>
             </div>
           </div>
@@ -375,7 +418,11 @@ const AnalyticsReporting = () => {
         isOpen={customizeOpen}
         onClose={() => setCustomizeOpen(false)}
         onSave={handleDashboardSave}
-        currentLayout={['patient-metrics', 'financial-overview', 'staff-productivity']}
+        currentLayout={[
+          "patient-metrics",
+          "financial-overview",
+          "staff-productivity",
+        ]}
       />
     </div>
   );

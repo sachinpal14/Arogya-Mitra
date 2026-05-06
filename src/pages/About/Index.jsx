@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const About = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -16,24 +15,7 @@ const About = () => {
       portfolio: "https://my-portfolio-theta-kohl-41.vercel.app/",
       portfolio2: "https://my-new-portfolio-com.vercel.app/",
     },
-    // {
-    //   id: 2,
-    //   name: "Jyoti Kumari",
-    //   role: "Database Designer",
-    //   image: "/assets/images/jyoti.jpg",
-    //   bio: "Creative developer with some time experience as intern and freelancer...",
-    //   skills: ["java", "MySQL"],
-    //   resume: "./assets/Jyoti_Singh_resume.pdf"
-    // },
-    // {
-    //   id: 3,
-    //   name: "Keshav Upadhyay",
-    //   role: "Backend Devlopement ,Version Control",
-    //   image: "./assets/images/keshav.jpg",
-    //   bio: "Creative developer 1 year experience as intern and Digital Experience",
-    //   skills: ["Java", "MySql", "Html", "Css"],
 
-    // },
     {
       id: 4,
       name: "Deepanshu Varshnay",
@@ -41,35 +23,17 @@ const About = () => {
       image: "./assets/images/deepanshu.jpg",
       bio: "Backend specialist ensuring robust and scalable infrastructure.",
       skills: ["API Design", "Databases", "Java"],
-      resume: "/assets/Deepanshu_Varshney_Resume.pdf"
+      resume: "/assets/Deepanshu_Varshney_Resume.pdf",
     },
 
-    // {
-    //   id: 5,
-    //   name: "Hina",
-    //   role: "Database Designer",
-    //   image: './assets/images/hina.jpg',
-    //   bio: "Database and Frontend Designer crafting clean digital experiences......",
-    //   skills: ["React", "Java", "MySql"],
-    //   portfolio: "https://hina-site-dev.netlify.app/"
-    // },
-    // {
-    //   id: 6,
-    //   name: "Yuvraj Singh",
-    //   role: "Frontend Developer",
-    //   image: './assets/images/yuvraj.jpg',
-    //   bio: "Createive developer with some time experience freelancer...",
-    //   skills: ["React", "HTML", "CSS"],
-    //   portfolio: "https://yuvraj-singh-001.github.io/yuvraj-portfolio/"
-    // },
     {
       id: 7,
       name: "Sachin Kumar",
       role: "Git & Github Management",
-      image: './assets/images/Sachin Kumar.jpeg' ,
+      image: "./assets/images/Sachin Kumar.jpeg",
       skills: ["Git", "HTML", "CSS"],
-     portfolio:""
-    }
+      portfolio: "",
+    },
   ];
 
   const containerVariants = {
@@ -77,9 +41,9 @@ const About = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
@@ -88,14 +52,13 @@ const About = () => {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.5
-      }
-    }
+        duration: 0.5,
+      },
+    },
   };
 
   return (
     <div className="min-h-screen bg-[#010336]">
-      
       {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0, y: -50 }}
@@ -110,7 +73,10 @@ const About = () => {
             transition={{ duration: 0.6 }}
             className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6"
           >
-            Meet Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">Amazing Team</span>
+            Meet Our{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+              Amazing Team
+            </span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -118,7 +84,8 @@ const About = () => {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto"
           >
-            We're a passionate group of creators, developers, and innovators dedicated to building something extraordinary together.
+            We're a passionate group of creators, developers, and innovators
+            dedicated to building something extraordinary together.
           </motion.p>
         </div>
       </motion.div>
@@ -148,7 +115,7 @@ const About = () => {
                     alt={member.name}
                     className="w-full h-full object-cover"
                     animate={{
-                      scale: hoveredCard === member.id ? 1.1 : 1
+                      scale: hoveredCard === member.id ? 1.1 : 1,
                     }}
                     transition={{ duration: 0.3 }}
                   />
@@ -163,9 +130,7 @@ const About = () => {
                   <p className="text-purple-400 font-medium mb-3">
                     {member.role}
                   </p>
-                  <p className="text-gray-300 text-sm mb-4">
-                    {member.bio}
-                  </p>
+                  <p className="text-gray-300 text-sm mb-4">{member.bio}</p>
 
                   {/* Skills */}
                   <div className="flex flex-wrap gap-2">
@@ -181,37 +146,38 @@ const About = () => {
                       </motion.span>
                     ))}
                   </div>
-                  {member.id != 7 && <div className='mt-3'>
-
-                    {member.resume ? <button
-                      onClick={() => window.open(`${member.resume}`, "_blank")}
-                      className="text-white "
-                    >
-                      View Resume
-                    </button>
-                      : <div className='flex gap-5'>
-                        <a
-                          href={member.portfolio}
-                          className='text-white'
-                        >Portfolio</a>
-                        {member.id == 1 && <a
-                          href={member.portfolio2}
-                          className='text-white'
-                        >Portfolio 2</a>}
-                      </div>
-                    }
-
-
-
-                  </div>}
-
+                  {member.id != 7 && (
+                    <div className="mt-3">
+                      {member.resume ? (
+                        <button
+                          onClick={() =>
+                            window.open(`${member.resume}`, "_blank")
+                          }
+                          className="text-white "
+                        >
+                          View Resume
+                        </button>
+                      ) : (
+                        <div className="flex gap-5">
+                          <a href={member.portfolio} className="text-white">
+                            Portfolio
+                          </a>
+                          {member.id == 1 && (
+                            <a href={member.portfolio2} className="text-white">
+                              Portfolio 2
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
 
                 {/* Hover Effect Border */}
                 <motion.div
                   className="absolute inset-0 rounded-2xl border-2 border-purple-500 opacity-0 pointer-events-none"
                   animate={{
-                    opacity: hoveredCard === member.id ? 1 : 0
+                    opacity: hoveredCard === member.id ? 1 : 0,
                   }}
                   transition={{ duration: 0.3 }}
                 />

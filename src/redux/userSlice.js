@@ -7,6 +7,7 @@ export const registerUser = createAsyncThunk(
   async (form, thunkAPI) => {
     try {
       const res = await api.post("/users/register", form);
+     
       return res.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response?.data?.message);

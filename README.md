@@ -6,7 +6,7 @@ This repository is dedicated to developing the frontend for Innovatrix, the team
 
 ## Developer Details
 
-- **Name:** [Pikachu, Yuvraj Singh]
+- **Name:** [Pikachu]
 - **Role:** Frontend Developer
 - **Team:** Innovatrix
  
